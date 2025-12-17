@@ -1,0 +1,106 @@
+<!doctype html>
+<html
+  lang="hu"
+  data-locale="hu-HU"
+  data-stats="Karakterek: {chars} · Szavak: {words} · Sorok: {lines}"
+  data-toast-copied="Másolva ✓"
+  data-toast-cleared="Törölve"
+  data-toast-done="Kész"
+  data-toast-copy-fail="Nem sikerült másolni"
+>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Betűméret átalakító – Online kis- és nagybetűs szöveg átalakító</title>
+  <meta
+    name="description"
+    content="Ingyenes online szövegátalakító. Alakítsd a szöveget nagybetűsre, kisbetűsre, mondatkezdő nagybetűsre vagy váltakozó betűméretűre."
+  >
+
+  <link rel="canonical" href="https://caseconvertonline.com/hu/">
+
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="en" href="https://caseconvertonline.com/" />
+  <link rel="alternate" hreflang="hu" href="https://caseconvertonline.com/hu/" />
+  <link rel="alternate" hreflang="de" href="https://caseconvertonline.com/de/" />
+  <link rel="alternate" hreflang="fr" href="https://caseconvertonline.com/fr/" />
+  <link rel="alternate" hreflang="es" href="https://caseconvertonline.com/es/" />
+  <link rel="alternate" hreflang="nl" href="https://caseconvertonline.com/nl/" />
+  <link rel="alternate" hreflang="pt" href="https://caseconvertonline.com/pt/" />
+  <link rel="alternate" hreflang="pl" href="https://caseconvertonline.com/pl/" />
+  <link rel="alternate" hreflang="x-default" href="https://caseconvertonline.com/" />
+
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+
+<body>
+<header>
+  <div class="header-inner">
+    <div class="logo">caseconverter<span>online</span></div>
+
+    <div class="lang">
+      <span>Nyelv</span>
+      <select id="langSelect">
+        <option value="en">English</option>
+        <option value="hu" selected>Magyar</option>
+        <option value="de">Deutsch</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="nl">Nederlands</option>
+        <option value="pt">Português</option>
+        <option value="pl">Polski</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <h1>Online betűméret átalakító</h1>
+
+    <div class="subtitle">
+      Gyors és ingyenes szövegátalakítás – illeszd be a szöveget alább.
+    </div>
+
+    <div class="buttons" id="buttons">
+      <button class="primary" data-action="sentence" data-case="1">
+        Mondatkezdő nagybetű
+      </button>
+      <button data-action="lower" data-case="1">kisbetűs</button>
+      <button data-action="upper" data-case="1">NAGYBETŰS</button>
+      <button data-action="capitalized" data-case="1">
+        Szókezdő nagybetű
+      </button>
+      <button data-action="alternating" data-case="1">
+        vÁlTaKoZó
+      </button>
+      <button data-action="copy">Másolás</button>
+      <button class="danger" data-action="clear">Törlés</button>
+    </div>
+
+    <textarea
+      id="text"
+      placeholder="Ide illeszd be az átalakítandó szöveget..."
+    ></textarea>
+
+    <div class="footer-bar">
+      <div id="stats"></div>
+      <div class="toast" id="toast"></div>
+    </div>
+  </div>
+
+  <div class="features">
+    <h2>Mit tud ez az eszköz?</h2>
+    <ul>
+      <li>Kis- és nagybetűs szöveg átalakítás egy kattintással</li>
+      <li>Mondatkezdő és szókezdő nagybetűs formázás</li>
+      <li>Váltakozó betűméret (pl. mémekhez)</li>
+      <li>Azonnali másolás, regisztráció nélkül</li>
+    </ul>
+  </div>
+</main>
+
+<script src="../assets/app.js" defer></script>
+</body>
+</html>
