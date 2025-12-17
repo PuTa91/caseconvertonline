@@ -125,14 +125,12 @@
   });
 
   // Theme toggle (Light/Dark)
-  const modeToggle = document.getElementById("modeToggle");
-  const THEME_KEY = "cc_theme";
+		function getPreferredTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  if (saved === "dark" || saved === "light") return saved;
+  return "light";
+}
 
-  function getPreferredTheme() {
-    const saved = localStorage.getItem(THEME_KEY);
-    if (saved === "dark" || saved === "light") return saved;
-    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-  }
 
   function applyTheme(theme) {
     if (theme === "dark") {
