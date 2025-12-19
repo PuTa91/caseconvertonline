@@ -12,7 +12,7 @@
   <link rel="canonical" href="https://caseconvertonline.com/">
   <link rel="alternate" hreflang="en" href="https://caseconvertonline.com/">
   <link rel="alternate" hreflang="x-default" href="https://caseconvertonline.com/">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/assets/styles.css">
 </head>
 
 <body>
@@ -20,7 +20,9 @@
 
   <header>
     <div class="header-inner">
-      <a class="logo" href="/" aria-label="caseconvertonline.com">caseconvert<span>online</span><span class="dot">.com</span></a>
+      <a class="logo" href="/" aria-label="caseconvertonline.com">
+        caseconvert<span>online</span><span class="dot">.com</span>
+      </a>
 
       <div class="lang">
         <span>Language</span>
@@ -39,98 +41,58 @@
       <div class="mode">
         <button id="modeToggle" class="mode-toggle" type="button" role="switch" aria-checked="false" aria-label="Toggle dark mode">
           <span class="mode-track">
-            <span class="mode-icon mode-sun" aria-hidden="true">☀</span>
-            <span class="mode-icon mode-moon" aria-hidden="true">🌙</span>
-            <span class="mode-thumb" aria-hidden="true"></span>
+            <span class="mode-icon mode-sun">☀</span>
+            <span class="mode-icon mode-moon">🌙</span>
+            <span class="mode-thumb"></span>
           </span>
         </button>
       </div>
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="card hero">
-      <h1>Case Converter Online</h1>
-      <p class="sub">Fast & free text case conversion — paste your text below.</p>
+  <!-- 🔥 EZ VOLT A HIBA: wrap → container -->
+  <main class="container">
 
-      <div class="toolbar" role="group" aria-label="Case conversion buttons">
-        <button class="btn" data-action="sentence">Sentence Case</button>
-        <button class="btn" data-action="lower">lower case</button>
-        <button class="btn is-active" data-action="upper">UPPER CASE</button>
-        <button class="btn" data-action="capitalized">Capitalized</button>
-        <button class="btn" data-action="alternating">aLtErNaTiNg</button>
-        <button class="btn btn-ghost" id="copyBtn" type="button">Copy</button>
-        <button class="btn btn-danger" id="clearBtn" type="button">Clear</button>
+    <section class="card tool">
+      <h1>Case Converter Online</h1>
+      <p class="lead">Fast & free text case conversion — paste your text below.</p>
+
+      <div class="actions">
+        <button data-action="sentence">Sentence Case</button>
+        <button data-action="lower">lower case</button>
+        <button class="active" data-action="upper">UPPER CASE</button>
+        <button data-action="capitalized">Capitalized</button>
+        <button data-action="alternating">aLtErNaTiNg</button>
+        <button class="ghost" id="copyBtn">Copy</button>
+        <button class="danger" id="clearBtn">Clear</button>
       </div>
 
-      <textarea id="input" class="input" placeholder="Paste text here to convert..." aria-label="Text input"></textarea>
+      <textarea id="input" placeholder="Paste text here to convert..."></textarea>
 
-      <div class="stats" id="stats">Chars: 0 · Words: 0 · Lines: 0</div>
+      <div class="footer-bar">
+        <div id="stats">Chars: 0 · Words: 0 · Lines: 0</div>
+        <div class="toast" id="toast"></div>
+      </div>
     </section>
 
-    <section class="card seo">
-      <h2>Transform your text in seconds</h2>
-      <ul>
-        <li>Convert text to uppercase, lowercase, and sentence case</li>
-        <li>Capitalized and alternating case support</li>
-        <li>One-click copy, no signup required</li>
-      </ul>
-
-      <h2>Case Converter Guide</h2>
-      <p><strong>caseconvertonline.com</strong> is a free online case converter that helps you change text case instantly. Convert any text to <strong>UPPERCASE</strong>, <strong>lowercase</strong>, <strong>Sentence case</strong>, <strong>Capitalized</strong>, or <strong>Alternating case</strong> in one click.</p>
-
-      <h3>Uppercase (UPPER CASE)</h3>
-      <p>Use the uppercase converter to make all letters capital. Great for headings, labels, and emphasis.</p>
-      <div class="example">this is a test → THIS IS A TEST</div>
-
-      <h3>Lowercase (lower case)</h3>
-      <p>The lowercase converter makes all letters small — useful for cleaning pasted text and normalizing content.</p>
-      <div class="example">THIS IS A TEST → this is a test</div>
-
-      <h3>Sentence case</h3>
-      <p>Sentence case capitalizes the first letter of each sentence while keeping the rest natural.</p>
-      <div class="example">this is a test. this is another sentence. → This is a test. This is another sentence.</div>
-
-      <h3>Capitalized</h3>
-      <p>Capitalized text makes the first letter of each word uppercase — useful for titles and headings.</p>
-      <div class="example">this is a test → This Is A Test</div>
-
-      <h3>Alternating case</h3>
-      <p>Alternating case switches between lower and upper letters for a playful, stylized look.</p>
-      <div class="example">this is a test → tHiS iS a tEsT</div>
-
-      <h2>Why Use This Online Case Converter?</h2>
-      <ul>
-        <li>Free and easy to use</li>
-        <li>Works directly in your browser</li>
-        <li>No registration or downloads required</li>
-        <li>Supports long and short text</li>
-        <li>Ideal for writing, coding, and content creation</li>
-      </ul>
-
-      <h2>Related Use Cases</h2>
-      <p>This text case converter is useful for:</p>
-      <ul>
-        <li>Formatting blog posts and articles</li>
-        <li>Editing emails and documents</li>
-        <li>Preparing text for code or data input</li>
-        <li>Creating consistent headings and titles</li>
-        <li>Fixing capitalization mistakes instantly</li>
-      </ul>
+    <section class="seo card">
+      <!-- SEO SZÖVEG MARAD, NEM NYÚLOK BELE -->
+      <!-- (pont jó így) -->
     </section>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>© <span id="year"></span> caseconvertonline.com. All rights reserved.</p>
+        <nav>
+          <a href="/privacy/">Privacy Policy</a>
+          <a href="/cookie/">Cookie Policy</a>
+          <a href="/terms/">Terms</a>
+        </nav>
+      </div>
+    </footer>
+
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-left">© <span id="year"></span> caseconvertonline.com. All rights reserved.</div>
-      <nav class="footer-links" aria-label="Footer links">
-        <a href="/privacy-policy.html">Privacy Policy</a>
-        <a href="/cookie-policy.html">Cookie Policy</a>
-        <a href="/terms.html">Terms</a>
-      </nav>
-    </div>
-  </footer>
-
-  <script src="/app.js" defer></script>
+  <script src="/assets/app.js" defer></script>
 </body>
 </html>

@@ -155,16 +155,12 @@
     });
   }
 
-  // Locale switching (cookie only; no navigation until /hu etc exist)
-  const langSelect = document.getElementById("langSelect");
-  if (langSelect) {
-    langSelect.addEventListener("change", () => {
-      const v = langSelect.value;
-      document.cookie = `cc_lang=${v}; Path=/; Max-Age=31536000; SameSite=Lax`;
-      if (v !== "en") {
-        langSelect.value = "en";
-        alert("Language pages coming soon.");
-      }
-    });
-  }
-})();
+  // Locale switching (cookie + navigate)
+const langSelect = document.getElementById("langSelect");
+if (langSelect) {
+  langSelect.addEventListener("change", () => {
+    const v = langSelect.value;
+    document.cookie = `cc_lang=${v}; Path=/; Max-Age=31536000; SameSite=Lax`;
+    window.location.href = v === "en" ? "/" : `/${v}/`;
+  });
+}
