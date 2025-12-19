@@ -1,14 +1,13 @@
-(function () {
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ===============================
+     CASE CONVERTER TOOL
+     =============================== */
+
   const text = document.getElementById("text");
   const stats = document.getElementById("stats");
   const toast = document.getElementById("toast");
-  const buttons = document.querySelectorAll(".actions button");
-  const langSelect = document.getElementById("langSelect");
-  const modeToggle = document.getElementById("modeToggle");
-
-  if (!text) return;
-
-  /* ---------- helpers ---------- */
+  const actionButtons = document.querySelectorAll(".actions button");
 
   function countWords(str) {
     return str.trim() ? str.trim().split(/\s+/).length : 0;
@@ -19,7 +18,7 @@
   }
 
   function updateStats() {
-    if (!stats) return;
+    if (!text || !stats) return;
     const t = text.value || "";
     stats.textContent = `Chars: ${t.length} · Words: ${countWords(t)} · Lines: ${countLines(t)}`;
   }
@@ -31,95 +30,101 @@
     setTimeout(() => (toast.style.display = "none"), 1200);
   }
 
-  /* ---------- case actions ---------- */
-
   const actions = {
-    upper: (s) => s.toUpperCase(),
-    lower: (s) => s.toLowerCase(),
-    sentence: (s) =>
-      s
-        .toLowerCase()
-        .replace(/(^\s*[a-z])|([.!?]\s*[a-z])/g, (m) => m.toUpperCase()),
-    capitalized: (s) =>
-      s.toLowerCase().replace(/\b([a-z])/g, (m) => m.toUpperCase()),
-    alternating: (s) => {
-      let out = "";
-      let flip = false;
+    upper: s => s.toUpperCase(),
+    lower: s => s.toLowerCase(),
+    sentence: s =>
+      s.toLowerCase().replace(/(^\s*[a-z])|([.!?]\s*[a-z])/g, m => m.toUpperCase()),
+    capitalized: s =>
+      s.toLowerCase().replace(/\b([a-z])/g, m => m.toUpperCase()),
+    alternating: s => {
+      let out = "", flip = false;
       for (const ch of s) {
         if (/[a-z]/i.test(ch)) {
           out += flip ? ch.toUpperCase() : ch.toLowerCase();
           flip = !flip;
-        } else {
-          out += ch;
-        }
+        } else out += ch;
       }
       return out;
-    },
+    }
   };
 
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", async () => {
-      const a = btn.dataset.action;
+  if (text && actionButtons.length) {
+    actionButtons.forEach(btn => {
+      btn.addEventListener("click", async () => {
+        const a = btn.dataset.action;
 
-      if (a === "copy") {
-        await navigator.clipboard.writeText(text.value || "");
-        showToast("Copied ✓");
-        return;
-      }
+        if (a === "copy") {
+          await navigator.clipboard.writeText(text.value || "");
+          showToast("Copied ✓");
+          return;
+        }
 
-      if (a === "clear") {
-        text.value = "";
+        if (a === "clear") {
+          text.value = "";
+          updateStats();
+          showToast("Cleared");
+          return;
+        }
+
+        if (!actions[a]) return;
+
+        actionButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        text.value = actions[a](text.value || "");
         updateStats();
-        showToast("Cleared");
-        return;
-      }
-
-      if (!actions[a]) return;
-
-      buttons.forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-
-      text.value = actions[a](text.value || "");
-      updateStats();
-      showToast("Done");
+        showToast("Done");
+      });
     });
-  });
 
-  /* ---------- theme (default LIGHT) ---------- */
+    text.addEventListener("input", updateStats);
+    updateStats();
+  }
 
+  /* ===============================
+     DARK / LIGHT MODE
+     =============================== */
+
+  const modeToggle = document.getElementById("modeToggle");
   const THEME_KEY = "cco_theme";
 
-  function applyTheme(t) {
-    if (t === "dark") {
+  function applyTheme(theme) {
+    if (theme === "dark") {
       document.documentElement.setAttribute("data-theme", "dark");
     } else {
       document.documentElement.removeAttribute("data-theme");
     }
-    localStorage.setItem(THEME_KEY, t);
-    modeToggle?.setAttribute("aria-checked", t === "dark");
+    localStorage.setItem(THEME_KEY, theme);
+    if (modeToggle) modeToggle.setAttribute("aria-checked", theme === "dark");
   }
 
-  applyTheme(localStorage.getItem(THEME_KEY) || "light");
+  const savedTheme = localStorage.getItem(THEME_KEY) || "light";
+  applyTheme(savedTheme);
 
-  modeToggle?.addEventListener("click", () => {
-    const isDark = document.documentElement.hasAttribute("data-theme");
-    applyTheme(isDark ? "light" : "dark");
-  });
+  if (modeToggle) {
+    modeToggle.addEventListener("click", () => {
+      const isDark = document.documentElement.hasAttribute("data-theme");
+      applyTheme(isDark ? "light" : "dark");
+    });
+  }
 
-// Language switch (cookie + navigate) — works for /hu/, /de/, etc.
-(function () {
+  /* ===============================
+     LANGUAGE SWITCH
+     =============================== */
+
   const langSelect = document.getElementById("langSelect");
-  if (!langSelect) return;
 
-  // Set select based on URL (so /hu/ shows Hungarian selected)
-  const path = window.location.pathname;
-  const match = path.match(/^\/(hu|de|fr|es|nl|pt|pl)\//);
-  const current = match ? match[1] : "en";
-  langSelect.value = current;
+  if (langSelect) {
+    const path = window.location.pathname;
+    const match = path.match(/^\/(hu|de|fr|es|nl|pt|pl)\//);
+    langSelect.value = match ? match[1] : "en";
 
-  langSelect.addEventListener("change", () => {
-    const v = langSelect.value;
-    document.cookie = `cc_lang=${v}; Path=/; Max-Age=31536000; SameSite=Lax`;
-    window.location.href = v === "en" ? "/" : `/${v}/`;
-  });
-})();
+    langSelect.addEventListener("change", () => {
+      const v = langSelect.value;
+      document.cookie = `cc_lang=${v}; Path=/; Max-Age=31536000; SameSite=Lax`;
+      window.location.href = v === "en" ? "/" : `/${v}/`;
+    });
+  }
+
+});
