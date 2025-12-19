@@ -355,33 +355,3 @@ html[data-theme="dark"] .mode-thumb{ transform: translateX(42px); }
   border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
   background: color-mix(in srgb, var(--accent) 18%, var(--bg2));
 }
-.to-top{
-  position: fixed;
-  right: 18px;
-  bottom: 90px; /* cookie banner fölött */
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--card);
-  color: var(--text);
-  font-size: 18px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(8px);
-  transition: opacity .2s ease, transform .2s ease;
-}
-
-.to-top:hover{
-  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
-  color: var(--accent);
-}
-
-.to-top.show{
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}

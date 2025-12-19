@@ -1,31 +1,77 @@
-<!doctype html>
-<html lang="en" data-locale="en-US"
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-locale="en-US"
   data-stats="Chars: {chars} · Words: {words} · Lines: {lines}"
-  data-toast-copied="Copied ✓" data-toast-cleared="Cleared"
+  data-toast-copied="Copied ✓"
+  data-toast-copy-fail="Copy failed"
+  data-toast-cleared="Cleared"
   data-toast-done="Done"
 >
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Case Converter Online — Uppercase & Lowercase Text Converter</title>
-  <meta name="description" content="Free online case converter to change text to UPPERCASE, lowercase, Sentence case, Capitalized, or Alternating case instantly. Paste your text, convert with one click, and copy the result.">
-  <link rel="canonical" href="https://caseconvertonline.com/">
-  <link rel="alternate" hreflang="en" href="https://caseconvertonline.com/">
-  <link rel="alternate" hreflang="x-default" href="https://caseconvertonline.com/">
-  <link rel="stylesheet" href="/assets/styles.css">
+  <meta charset="utf-8" />
+  <meta content="width=device-width,initial-scale=1" name="viewport" />
+
+  <title>Case Converter Online | Free Text Case Tool – caseconvertonline.com</title>
+  <meta
+    name="description"
+    content="caseconvertonline.com is a free online case converter to change text case instantly. Convert to uppercase, lowercase, sentence case, capitalized, or alternating case in one click."
+  />
+
+  <link href="https://caseconvertonline.com/" rel="canonical" />
+  <link href="https://caseconvertonline.com/" hreflang="en" rel="alternate" />
+  <link href="https://caseconvertonline.com/hu/" hreflang="hu" rel="alternate" />
+  <link href="https://caseconvertonline.com/de/" hreflang="de" rel="alternate" />
+  <link href="https://caseconvertonline.com/fr/" hreflang="fr" rel="alternate" />
+  <link href="https://caseconvertonline.com/es/" hreflang="es" rel="alternate" />
+
+  <link href="assets/styles.css" rel="stylesheet" />
+
+  <!-- FAQ Schema (helps SEO; keep answers aligned with on-page FAQ) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"What is a case converter?",
+        "acceptedAnswer":{"@type":"Answer","text":"A case converter (text case converter) is an online tool that changes the capitalization of your text, such as uppercase, lowercase, sentence case, capitalized case, or alternating case."}
+      },
+      {
+        "@type":"Question",
+        "name":"Is this case converter free to use?",
+        "acceptedAnswer":{"@type":"Answer","text":"Yes. caseconvertonline.com is free to use and works directly in your browser."}
+      },
+      {
+        "@type":"Question",
+        "name":"Do you store the text I paste here?",
+        "acceptedAnswer":{"@type":"Answer","text":"No. Your text stays in your browser. This site does not send your text to a server for conversion."}
+      },
+      {
+        "@type":"Question",
+        "name":"What is sentence case?",
+        "acceptedAnswer":{"@type":"Answer","text":"Sentence case capitalizes the first letter of each sentence while keeping the rest in lowercase (except proper nouns)."}
+      },
+      {
+        "@type":"Question",
+        "name":"Will Google Analytics track me?",
+        "acceptedAnswer":{"@type":"Answer","text":"Google Analytics is loaded only after you accept analytics cookies in the cookie banner. You can decline or change your choice later by clearing site data."}
+      }
+    ]
+  }
+  </script>
 </head>
 
 <body>
-  <button id="toTop" class="to-top" aria-label="Back to top">↑</button>
-
   <header>
     <div class="header-inner">
-      <a class="logo" href="/" aria-label="caseconvertonline.com">caseconvert<span>online</span><span class="dot">.com</span></a>
+      <div class="logo">caseconvert<span>online</span><span class="dot">.com</span></div>
 
       <div class="lang">
         <span>Language</span>
         <select id="langSelect">
-          <option value="en" selected>English</option>
+          <option selected value="en">English</option>
           <option value="hu">Magyar</option>
           <option value="de">Deutsch</option>
           <option value="fr">Français</option>
@@ -36,8 +82,16 @@
         </select>
       </div>
 
+      <!-- Light/Dark toggle (small, beside Language) -->
       <div class="mode">
-        <button id="modeToggle" class="mode-toggle" type="button" role="switch" aria-checked="false" aria-label="Toggle dark mode">
+        <button
+          id="modeToggle"
+          class="mode-toggle"
+          type="button"
+          role="switch"
+          aria-checked="false"
+          aria-label="Toggle dark mode"
+        >
           <span class="mode-track">
             <span class="mode-icon mode-sun" aria-hidden="true">☀</span>
             <span class="mode-icon mode-moon" aria-hidden="true">🌙</span>
@@ -48,68 +102,93 @@
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="card hero">
+  <main class="container">
+    <div class="card tool">
       <h1>Case Converter Online</h1>
-      <p class="sub">Fast & free text case conversion — paste your text below.</p>
+      <p class="lead">Fast & free text case conversion — paste your text below.</p>
 
-      <div class="toolbar" role="group" aria-label="Case conversion buttons">
-        <button class="btn" data-action="sentence">Sentence Case</button>
-        <button class="btn" data-action="lower">lower case</button>
-        <button class="btn is-active" data-action="upper">UPPER CASE</button>
-        <button class="btn" data-action="capitalized">Capitalized</button>
-        <button class="btn" data-action="alternating">aLtErNaTiNg</button>
-        <button class="btn btn-ghost" id="copyBtn" type="button">Copy</button>
-        <button class="btn btn-danger" id="clearBtn" type="button">Clear</button>
+      <!-- TOOL BUTTONS (unchanged behavior) -->
+      <div class="actions">
+        <button data-action="sentence">Sentence Case</button>
+        <button data-action="lower">lower case</button>
+        <button class="active" data-action="upper">UPPER CASE</button>
+        <button data-action="capitalized">Capitalized</button>
+        <button data-action="alternating">aLtErNaTiNg</button>
+        <button class="ghost" data-action="copy">Copy</button>
+        <button class="danger" data-action="clear">Clear</button>
       </div>
 
-      <textarea id="input" class="input" placeholder="Paste text here to convert..." aria-label="Text input"></textarea>
+      <textarea id="text" placeholder="Paste text here to convert..."></textarea>
 
-      <div class="stats" id="stats">Chars: 0 · Words: 0 · Lines: 0</div>
-    </section>
+      <div class="footer-bar">
+        <div id="stats"></div>
+        <div class="toast" id="toast"></div>
+      </div>
+    </div>
 
-    <section class="card seo">
+    <!-- Features box -->
+    <div class="features card">
       <h2>Transform your text in seconds</h2>
       <ul>
         <li>Convert text to uppercase, lowercase, and sentence case</li>
         <li>Capitalized and alternating case support</li>
         <li>One-click copy, no signup required</li>
       </ul>
+    </div>
 
+    <!-- SEO content -->
+    <section class="seo" aria-label="Case Converter Guide">
       <h2>Case Converter Guide</h2>
-      <p><strong>caseconvertonline.com</strong> is a free online case converter that helps you change text case instantly. Convert any text to <strong>UPPERCASE</strong>, <strong>lowercase</strong>, <strong>Sentence case</strong>, <strong>Capitalized</strong>, or <strong>Alternating case</strong> in one click.</p>
+      <p class="seo-lead">
+        <strong>caseconvertonline.com</strong> is a free online <strong>case converter</strong> that helps you change text case instantly.
+        Convert any text to <strong>UPPERCASE</strong>, <strong>lowercase</strong>, <strong>Sentence case</strong>, <strong>Capitalized</strong>,
+        or <strong>Alternating case</strong> in one click.
+      </p>
 
       <h3>Uppercase (UPPER CASE)</h3>
-      <p>Use the uppercase converter to make all letters capital. Great for headings, labels, and emphasis.</p>
+      <p>Use the <strong>uppercase converter</strong> to make all letters capital. Great for headings, labels, and emphasis.</p>
       <div class="example">this is a test → THIS IS A TEST</div>
 
       <h3>Lowercase (lower case)</h3>
-      <p>The lowercase converter makes all letters small — useful for cleaning pasted text and normalizing content.</p>
+      <p>The <strong>lowercase converter</strong> makes all letters small — useful for cleaning pasted text and normalizing content.</p>
       <div class="example">THIS IS A TEST → this is a test</div>
 
-      <h3>Sentence case</h3>
-      <p>Sentence case capitalizes the first letter of each sentence while keeping the rest natural.</p>
-      <div class="example">this is a test. this is another sentence. → This is a test. This is another sentence.</div>
+      <h3>Sentence Case</h3>
+      <p>The <strong>sentence case converter</strong> capitalizes the first letter of each sentence for clean, readable formatting.</p>
+      <div class="example">this is a test. this is another sentence.
+→ This is a test. This is another sentence.</div>
 
       <h3>Capitalized</h3>
-      <p>Capitalized text makes the first letter of each word uppercase — useful for titles and headings.</p>
+      <p><strong>Capitalized case</strong> makes each word start with an uppercase letter — useful for names and headings.</p>
       <div class="example">this is a test → This Is A Test</div>
 
-      <h3>Alternating case</h3>
-      <p>Alternating case switches between lower and upper letters for a playful, stylized look.</p>
+      <h3>Alternating Case</h3>
+      <p><strong>Alternating case</strong> flips the pattern of uppercase/lowercase characters for quick playful formatting.</p>
       <div class="example">this is a test → tHiS iS a tEsT</div>
 
-      <h2>Why Use This Online Case Converter?</h2>
+      <h3>How to use</h3>
+      <ol>
+        <li>Paste or type your text into the box above.</li>
+        <li>Click the case you want (Sentence, lower, UPPER, Capitalized, Alternating).</li>
+        <li>Press <strong>Copy</strong> to copy the converted text.</li>
+      </ol>
+
+      <h3>Why Use This Online Case Converter?</h3>
       <ul>
-        <li>Free and easy to use</li>
+        <li><strong>Free</strong> and easy to use</li>
         <li>Works directly in your browser</li>
         <li>No registration or downloads required</li>
         <li>Supports long and short text</li>
         <li>Ideal for writing, coding, and content creation</li>
       </ul>
 
-      <h2>Related Use Cases</h2>
-      <p>This text case converter is useful for:</p>
+      <p>
+        If you regularly need to <strong>change text case online</strong>, format copied text, or fix capitalization issues,
+        this tool is designed to save you time and effort.
+      </p>
+
+      <h3>Related Use Cases</h3>
+      <p>This <strong>text case converter</strong> is useful for:</p>
       <ul>
         <li>Formatting blog posts and articles</li>
         <li>Editing emails and documents</li>
@@ -117,20 +196,120 @@
         <li>Creating consistent headings and titles</li>
         <li>Fixing capitalization mistakes instantly</li>
       </ul>
+
+      <p class="seo-note">
+        Common searches: <em>text case converter</em>, <em>convert case online</em>, <em>uppercase converter</em>, <em>lowercase converter</em>.
+      </p>
     </section>
+
+    <!-- FAQ (on-page) -->
+    <section class="faq card" aria-label="FAQ">
+      <h2>FAQ</h2>
+
+      <details>
+        <summary>What is a case converter?</summary>
+        <p>A case converter (text case converter) changes your text capitalization, like uppercase, lowercase, sentence case, capitalized, or alternating case.</p>
+      </details>
+
+      <details>
+        <summary>Is caseconvertonline.com free?</summary>
+        <p>Yes. It’s free and works directly in your browser—no signup or download needed.</p>
+      </details>
+
+      <details>
+        <summary>Do you store my text?</summary>
+        <p>No. Your text stays in your browser. This website does not send your text to a server for conversion.</p>
+      </details>
+
+      <details>
+        <summary>What is sentence case?</summary>
+        <p>Sentence case capitalizes the first letter of each sentence, while keeping the rest in lowercase (except proper nouns).</p>
+      </details>
+
+      <details>
+        <summary>How does Google Analytics work here?</summary>
+        <p>Google Analytics is loaded only after you accept analytics cookies in the cookie banner. You can decline if you prefer.</p>
+      </details>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>© <span id="year"></span> caseconvertonline.com. All rights reserved.</p>
+        <nav aria-label="Footer links">
+          <a href="/privacy-policy.html">Privacy Policy</a>
+          <a href="/cookie-policy.html">Cookie Policy</a>
+          <a href="/terms.html">Terms</a>
+        </nav>
+      </div>
+    </footer>
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-left">© <span id="year"></span> caseconvertonline.com. All rights reserved.</div>
-      <nav class="footer-links" aria-label="Footer links">
-        <a href="/privacy-policy.html">Privacy Policy</a>
-        <a href="/cookie-policy.html">Cookie Policy</a>
-        <a href="/terms.html">Terms</a>
-      </nav>
+  <!-- Cookie banner -->
+  <div class="cookie" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie consent">
+    <div class="cookie-inner">
+      <p>
+        We use cookies for analytics (Google Analytics) to understand how the site is used.
+        You can accept or decline analytics cookies.
+        <a href="/cookie-policy.html">Learn more</a>.
+      </p>
+      <div class="cookie-actions">
+        <button id="cookieDecline" class="cookie-btn ghost" type="button">Decline</button>
+        <button id="cookieAccept" class="cookie-btn primary" type="button">Accept</button>
+      </div>
     </div>
-  </footer>
+  </div>
 
-  <script src="/app.js" defer></script>
+  <script defer src="assets/app.js"></script>
+
+  <!-- Minimal extras (theme year + cookie consent + GA loader) -->
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Cookie consent
+    const CONSENT_KEY = "cco_analytics_consent"; // "accepted" | "declined"
+    const banner = document.getElementById("cookieBanner");
+    const btnAccept = document.getElementById("cookieAccept");
+    const btnDecline = document.getElementById("cookieDecline");
+
+    function loadGA() {
+      // TODO: replace with your Measurement ID once you set it up (e.g., G-XXXXXXX)
+      const GA_ID = "G-XXXXXXXXXX";
+      if (GA_ID === "G-XXXXXXXXXX") return; // safe until you set a real ID
+
+      // gtag loader
+      const s = document.createElement("script");
+      s.async = true;
+      s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_ID);
+      document.head.appendChild(s);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", GA_ID, { anonymize_ip: true });
+    }
+
+    const saved = localStorage.getItem(CONSENT_KEY);
+    if (saved === "accepted") {
+      banner.style.display = "none";
+      loadGA();
+    } else if (saved === "declined") {
+      banner.style.display = "none";
+    } else {
+      banner.style.display = "block";
+    }
+
+    btnAccept?.addEventListener("click", () => {
+      localStorage.setItem(CONSENT_KEY, "accepted");
+      banner.style.display = "none";
+      loadGA();
+    });
+
+    btnDecline?.addEventListener("click", () => {
+      localStorage.setItem(CONSENT_KEY, "declined");
+      banner.style.display = "none";
+    });
+  </script>
 </body>
 </html>
