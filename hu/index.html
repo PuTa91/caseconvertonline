@@ -2,76 +2,38 @@
 <html
   lang="hu"
   data-locale="hu-HU"
-  data-stats="Chars: {chars} · Words: {words} · Lines: {lines}"
-  data-toast-copied="Copied ✓"
-  data-toast-copy-fail="Copy failed"
-  data-toast-cleared="Cleared"
-  data-toast-done="Done"
+  data-stats="Karakterek: {chars} · Szavak: {words} · Sorok: {lines}"
+  data-toast-copied="Másolva ✓"
+  data-toast-cleared="Törölve"
+  data-toast-done="Kész"
 >
 <head>
   <meta charset="utf-8" />
   <meta content="width=device-width,initial-scale=1" name="viewport" />
 
-  <title>Case Converter Online | Ingyenes tool – caseconvertonline.com</title>
+  <title>Case Converter Online | Ingyenes szövegformázó eszköz</title>
   <meta
     name="description"
-    content="caseconvertonline.com is a free online case converter to change text case instantly. Convert to uppercase, lowercase, sentence case, capitalized, or alternating case in one click."
+    content="Ingyenes online case converter, amellyel a szöveget nagybetűssé, kisbetűssé, mondatkezdőssé vagy váltakozó kis- és nagybetűssé alakíthatod egy kattintással."
   />
 
-  <link href="https://caseconvertonline.com/hu/" rel="canonical" />
-  <link href="https://caseconvertonline.com/" hreflang="en" rel="alternate" />
-  <link href="https://caseconvertonline.com/hu/" hreflang="hu" rel="alternate" />
-  <link href="https://caseconvertonline.com/de/" hreflang="de" rel="alternate" />
-  <link href="https://caseconvertonline.com/fr/" hreflang="fr" rel="alternate" />
-  <link href="https://caseconvertonline.com/es/" hreflang="es" rel="alternate" />
+  <link rel="canonical" href="https://caseconvertonline.com/hu/" />
+  <link rel="alternate" hreflang="en" href="https://caseconvertonline.com/" />
+  <link rel="alternate" hreflang="hu" href="https://caseconvertonline.com/hu/" />
 
-  <!-- ✅ FONTOS: abszolút útvonal /hu/ alatt is -->
-  <link href="/assets/styles.css" rel="stylesheet" />
-
-  <!-- FAQ Schema (helps SEO; keep answers aligned with on-page FAQ) -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"What is a case converter?",
-        "acceptedAnswer":{"@type":"Answer","text":"A case converter (text case converter) is an online tool that changes the capitalization of your text, such as uppercase, lowercase, sentence case, capitalized case, or alternating case."}
-      },
-      {
-        "@type":"Question",
-        "name":"Is this case converter free to use?",
-        "acceptedAnswer":{"@type":"Answer","text":"Yes. caseconvertonline.com is free to use and works directly in your browser."}
-      },
-      {
-        "@type":"Question",
-        "name":"Do you store the text I paste here?",
-        "acceptedAnswer":{"@type":"Answer","text":"No. Your text stays in your browser. This site does not send your text to a server for conversion."}
-      },
-      {
-        "@type":"Question",
-        "name":"What is sentence case?",
-        "acceptedAnswer":{"@type":"Answer","text":"Sentence case capitalizes the first letter of each sentence while keeping the rest in lowercase (except proper nouns)."}
-      },
-      {
-        "@type":"Question",
-        "name":"Will Google Analytics track me?",
-        "acceptedAnswer":{"@type":"Answer","text":"Google Analytics is loaded only after you accept analytics cookies in the cookie banner. You can decline or change your choice later by clearing site data."}
-      }
-    ]
-  }
-  </script>
+  <!-- FONTOS: abszolút asset útvonal -->
+  <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 
 <body>
   <header>
     <div class="header-inner">
-      <!-- ✅ legyen link, HU oldalon marad -->
-      <a class="logo" href="/hu/">caseconvert<span>online</span><span class="dot">.com</span></a>
+      <a class="logo" href="/hu/">
+        caseconvert<span>online</span><span class="dot">.com</span>
+      </a>
 
       <div class="lang">
-        <span>Language</span>
+        <span>Nyelv</span>
         <select id="langSelect">
           <option value="en">English</option>
           <option value="hu" selected>Magyar</option>
@@ -84,7 +46,6 @@
         </select>
       </div>
 
-      <!-- Light/Dark toggle (small, beside Language) -->
       <div class="mode">
         <button
           id="modeToggle"
@@ -92,12 +53,12 @@
           type="button"
           role="switch"
           aria-checked="false"
-          aria-label="Toggle dark mode"
+          aria-label="Sötét / világos mód"
         >
           <span class="mode-track">
-            <span class="mode-icon mode-sun" aria-hidden="true">☀</span>
-            <span class="mode-icon mode-moon" aria-hidden="true">🌙</span>
-            <span class="mode-thumb" aria-hidden="true"></span>
+            <span class="mode-icon mode-sun">☀</span>
+            <span class="mode-icon mode-moon">🌙</span>
+            <span class="mode-thumb"></span>
           </span>
         </button>
       </div>
@@ -107,20 +68,24 @@
   <main class="container">
     <div class="card tool">
       <h1>Case Converter Online</h1>
-      <p class="lead">Fast & free text case conversion — paste your text below.</p>
+      <p class="lead">
+        Gyors és ingyenes szövegformázás — illeszd be a szöveget alább.
+      </p>
 
-      <!-- TOOL BUTTONS -->
       <div class="actions">
-        <button data-action="sentence">Sentence Case</button>
-        <button data-action="lower">lower case</button>
-        <button class="active" data-action="upper">UPPER CASE</button>
-        <button data-action="capitalized">Capitalized</button>
-        <button data-action="alternating">aLtErNaTiNg</button>
-        <button class="ghost" data-action="copy">Copy</button>
-        <button class="danger" data-action="clear">Clear</button>
+        <button data-action="sentence">Mondatkezdő</button>
+        <button data-action="lower">kisbetűs</button>
+        <button class="active" data-action="upper">NAGYBETŰS</button>
+        <button data-action="capitalized">Szókezdő nagybetű</button>
+        <button data-action="alternating">vÁlTaKoZó</button>
+        <button class="ghost" data-action="copy">Másolás</button>
+        <button class="danger" data-action="clear">Törlés</button>
       </div>
 
-      <textarea id="text" placeholder="Paste text here to convert..."></textarea>
+      <textarea
+        id="text"
+        placeholder="Ide illeszd be a formázandó szöveget..."
+      ></textarea>
 
       <div class="footer-bar">
         <div id="stats"></div>
@@ -128,185 +93,51 @@
       </div>
     </div>
 
-    <!-- Features box -->
     <div class="features card">
-      <h2>Transform your text in seconds</h2>
+      <h2>Formázd a szöveget másodpercek alatt</h2>
       <ul>
-        <li>Convert text to uppercase, lowercase, and sentence case</li>
-        <li>Capitalized and alternating case support</li>
-        <li>One-click copy, no signup required</li>
+        <li>Nagybetűs, kisbetűs és mondatkezdő formázás</li>
+        <li>Szókezdő nagybetűs és váltakozó betűméret</li>
+        <li>Egykattintásos másolás, regisztráció nélkül</li>
       </ul>
     </div>
 
-    <!-- SEO content -->
-    <section class="seo" aria-label="Case Converter Guide">
-      <h2>Case Converter Guide</h2>
-      <p class="seo-lead">
-        <strong>caseconvertonline.com</strong> is a free online <strong>case converter</strong> that helps you change text case instantly.
-        Convert any text to <strong>UPPERCASE</strong>, <strong>lowercase</strong>, <strong>Sentence case</strong>, <strong>Capitalized</strong>,
-        or <strong>Alternating case</strong> in one click.
+    <section class="seo">
+      <h2>Mi az a Case Converter?</h2>
+      <p>
+        A <strong>caseconvertonline.com</strong> egy ingyenes online
+        <strong>szövegformázó eszköz</strong>, amellyel pillanatok alatt
+        átalakíthatod a szöveg kis- és nagybetűzését.
       </p>
 
-      <h3>Uppercase (UPPER CASE)</h3>
-      <p>Use the <strong>uppercase converter</strong> to make all letters capital. Great for headings, labels, and emphasis.</p>
-      <div class="example">this is a test → THIS IS A TEST</div>
-
-      <h3>Lowercase (lower case)</h3>
-      <p>The <strong>lowercase converter</strong> makes all letters small — useful for cleaning pasted text and normalizing content.</p>
-      <div class="example">THIS IS A TEST → this is a test</div>
-
-      <h3>Sentence Case</h3>
-      <p>The <strong>sentence case converter</strong> capitalizes the first letter of each sentence for clean, readable formatting.</p>
-      <div class="example">this is a test. this is another sentence.
-→ This is a test. This is another sentence.</div>
-
-      <h3>Capitalized</h3>
-      <p><strong>Capitalized case</strong> makes each word start with an uppercase letter — useful for names and headings.</p>
-      <div class="example">this is a test → This Is A Test</div>
-
-      <h3>Alternating Case</h3>
-      <p><strong>Alternating case</strong> flips the pattern of uppercase/lowercase characters for quick playful formatting.</p>
-      <div class="example">this is a test → tHiS iS a tEsT</div>
-
-      <h3>How to use</h3>
+      <h3>Hogyan használd?</h3>
       <ol>
-        <li>Paste or type your text into the box above.</li>
-        <li>Click the case you want (Sentence, lower, UPPER, Capitalized, Alternating).</li>
-        <li>Press <strong>Copy</strong> to copy the converted text.</li>
+        <li>Illeszd be vagy írd be a szöveget.</li>
+        <li>Válaszd ki a kívánt formázást.</li>
+        <li>Kattints a „Másolás” gombra.</li>
       </ol>
 
-      <h3>Why Use This Online Case Converter?</h3>
+      <h3>Mire használható?</h3>
       <ul>
-        <li><strong>Free</strong> and easy to use</li>
-        <li>Works directly in your browser</li>
-        <li>No registration or downloads required</li>
-        <li>Supports long and short text</li>
-        <li>Ideal for writing, coding, and content creation</li>
+        <li>Blogcikkek és címek formázása</li>
+        <li>E-mailek és dokumentumok szerkesztése</li>
+        <li>Programkód vagy adatbevitel előkészítése</li>
+        <li>Elgépelések gyors javítása</li>
       </ul>
-
-      <p>
-        If you regularly need to <strong>change text case online</strong>, format copied text, or fix capitalization issues,
-        this tool is designed to save you time and effort.
-      </p>
-
-      <h3>Related Use Cases</h3>
-      <p>This <strong>text case converter</strong> is useful for:</p>
-      <ul>
-        <li>Formatting blog posts and articles</li>
-        <li>Editing emails and documents</li>
-        <li>Preparing text for code or data input</li>
-        <li>Creating consistent headings and titles</li>
-        <li>Fixing capitalization mistakes instantly</li>
-      </ul>
-
-      <p class="seo-note">
-        Common searches: <em>text case converter</em>, <em>convert case online</em>, <em>uppercase converter</em>, <em>lowercase converter</em>.
-      </p>
-    </section>
-
-    <!-- FAQ (on-page) -->
-    <section class="faq card" aria-label="FAQ">
-      <h2>FAQ</h2>
-
-      <details>
-        <summary>What is a case converter?</summary>
-        <p>A case converter (text case converter) changes your text capitalization, like uppercase, lowercase, sentence case, capitalized, or alternating case.</p>
-      </details>
-
-      <details>
-        <summary>Is caseconvertonline.com free?</summary>
-        <p>Yes. It’s free and works directly in your browser—no signup or download needed.</p>
-      </details>
-
-      <details>
-        <summary>Do you store my text?</summary>
-        <p>No. Your text stays in your browser. This website does not send your text to a server for conversion.</p>
-      </details>
-
-      <details>
-        <summary>What is sentence case?</summary>
-        <p>Sentence case capitalizes the first letter of each sentence, while keeping the rest in lowercase (except proper nouns).</p>
-      </details>
-
-      <details>
-        <summary>How does Google Analytics work here?</summary>
-        <p>Google Analytics is loaded only after you accept analytics cookies in the cookie banner. You can decline if you prefer.</p>
-      </details>
     </section>
 
     <footer class="site-footer">
       <div class="footer-inner">
-        <p>© <span id="year"></span> caseconvertonline.com. All rights reserved.</p>
+        <p>© <span id="year"></span> caseconvertonline.com. Minden jog fenntartva.</p>
       </div>
     </footer>
   </main>
 
-  <!-- Cookie banner -->
-  <div class="cookie" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie consent">
-    <div class="cookie-inner">
-      <p>
-        We use cookies for analytics (Google Analytics) to understand how the site is used.
-        You can accept or decline analytics cookies.
-      </p>
-      <div class="cookie-actions">
-        <button id="cookieDecline" class="cookie-btn ghost" type="button">Decline</button>
-        <button id="cookieAccept" class="cookie-btn primary" type="button">Accept</button>
-      </div>
-    </div>
-  </div>
+  <script src="/assets/app.js" defer></script>
 
-  <!-- ✅ FONTOS: abszolút útvonal /hu/ alatt is -->
-  <script defer src="/assets/app.js"></script>
-
-  <!-- Minimal extras (year + cookie consent + GA loader) -->
   <script>
-    // Footer year
-    const y = document.getElementById("year");
-    if (y) y.textContent = new Date().getFullYear();
-
-    // Cookie consent
-    const CONSENT_KEY = "cco_analytics_consent"; // "accepted" | "declined"
-    const banner = document.getElementById("cookieBanner");
-    const btnAccept = document.getElementById("cookieAccept");
-    const btnDecline = document.getElementById("cookieDecline");
-
-    function loadGA() {
-      const GA_ID = "G-XXXXXXXXXX";
-      if (GA_ID === "G-XXXXXXXXXX") return;
-
-      const s = document.createElement("script");
-      s.async = true;
-      s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_ID);
-      document.head.appendChild(s);
-
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){ dataLayer.push(arguments); }
-      gtag("js", new Date());
-      gtag("config", GA_ID, { anonymize_ip: true });
-    }
-
-    const saved = localStorage.getItem(CONSENT_KEY);
-    if (banner) {
-      if (saved === "accepted") {
-        banner.style.display = "none";
-        loadGA();
-      } else if (saved === "declined") {
-        banner.style.display = "none";
-      } else {
-        banner.style.display = "block";
-      }
-    }
-
-    btnAccept?.addEventListener("click", () => {
-      localStorage.setItem(CONSENT_KEY, "accepted");
-      if (banner) banner.style.display = "none";
-      loadGA();
-    });
-
-    btnDecline?.addEventListener("click", () => {
-      localStorage.setItem(CONSENT_KEY, "declined");
-      if (banner) banner.style.display = "none";
-    });
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
   </script>
 </body>
 </html>

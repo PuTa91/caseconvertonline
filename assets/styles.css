@@ -355,3 +355,11 @@ html[data-theme="dark"] .mode-thumb{ transform: translateX(42px); }
   border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
   background: color-mix(in srgb, var(--accent) 18%, var(--bg2));
 }
+.logo,
+.logo:visited,
+.logo:hover,
+.logo:active {
+  text-decoration: none;
+  color: inherit;
+}
+
