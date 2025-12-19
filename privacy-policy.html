@@ -1,18 +1,33 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Privacy Policy | caseconvertonline.com</title>
-  <meta name="robots" content="index,follow">
-  <link rel="stylesheet" href="assets/styles.css">
+  <meta name="robots" content="index,follow" />
+
+  <!-- ✅ same as terms: absolute path -->
+  <link rel="stylesheet" href="/assets/styles.css" />
 </head>
+
 <body>
+  <button id="toTop" class="to-top" aria-label="Back to top">↑</button>
+
   <header>
     <div class="header-inner">
-      <a class="logo" href="/" aria-label="caseconvertonline.com">caseconvert<span>online</span><span class="dot">.com</span></a>
+      <a class="logo" href="/" aria-label="caseconvertonline.com">
+        caseconvert<span>online</span><span class="dot">.com</span>
+      </a>
+
       <div class="mode">
-        <button id="modeToggle" class="mode-toggle" type="button" role="switch" aria-checked="false" aria-label="Toggle dark mode">
+        <button
+          id="modeToggle"
+          class="mode-toggle"
+          type="button"
+          role="switch"
+          aria-checked="false"
+          aria-label="Toggle dark mode"
+        >
           <span class="mode-track">
             <span class="mode-icon mode-sun" aria-hidden="true">☀</span>
             <span class="mode-icon mode-moon" aria-hidden="true">🌙</span>
@@ -23,16 +38,21 @@
     </div>
   </header>
 
-  <main class="wrap">
+  <!-- ✅ same as terms: container (not wrap) -->
+  <main class="container">
     <section class="card seo">
       <h1>Privacy Policy</h1>
       <p>Effective date: <strong>2025-12-17</strong></p>
-      <p>This Privacy Policy explains how <strong>caseconvertonline.com</strong> collects, uses, and protects information when you use our website.</p>
+
+      <p>
+        This Privacy Policy explains how <strong>caseconvertonline.com</strong> collects, uses,
+        and protects information when you use our website.
+      </p>
 
       <h2>Information we collect</h2>
       <ul>
         <li><strong>Text you paste:</strong> Your text stays in your browser. We do not store or send it to a server.</li>
-        <li><strong>Analytics data:</strong> If enabled, we may use Google Analytics to understand aggregated usage (pages viewed, device type, approximate location). This does not include the text you convert.</li>
+        <li><strong>Analytics data:</strong> If enabled, we may use analytics to understand aggregated usage (pages viewed, device type). This does not include the text you convert.</li>
         <li><strong>Cookies/local storage:</strong> We may store your theme preference (light/dark) and your consent choice.</li>
       </ul>
 
@@ -43,21 +63,26 @@
       </ul>
 
       <h2>Cookies</h2>
-      <p>We use essential storage for preferences and (optionally) analytics cookies after consent. See the <a href="/cookie-policy.html">Cookie Policy</a> for details.</p>
+      <p>
+        We use essential storage for preferences and (optionally) analytics cookies after consent.
+        See the <a href="/cookie/">Cookie Policy</a> for details.
+      </p>
     </section>
+
+    <!-- ✅ same style footer as terms -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>© <span id="year"></span> caseconvertonline.com. All rights reserved.</p>
+        <nav>
+          <a href="/privacy/">Privacy Policy</a>
+          <a href="/cookie/">Cookie Policy</a>
+          <a href="/terms/">Terms</a>
+        </nav>
+      </div>
+    </footer>
   </main>
 
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-left">© <span id="year"></span> caseconvertonline.com. All rights reserved.</div>
-      <nav class="footer-links" aria-label="Footer links">
-        <a href="/privacy-policy.html">Privacy Policy</a>
-        <a href="/cookie-policy.html">Cookie Policy</a>
-        <a href="/terms.html">Terms</a>
-      </nav>
-    </div>
-  </footer>
-
-  <script src="/app.js" defer></script>
+  <!-- ✅ same as terms: absolute JS path -->
+  <script src="/assets/app.js" defer></script>
 </body>
 </html>
