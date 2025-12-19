@@ -106,16 +106,20 @@
     applyTheme(isDark ? "light" : "dark");
   });
 
-  /* ---------- language switch ---------- */
+// Language switch (cookie + navigate) — works for /hu/, /de/, etc.
+(function () {
+  const langSelect = document.getElementById("langSelect");
+  if (!langSelect) return;
 
-  langSelect?.addEventListener("change", () => {
+  // Set select based on URL (so /hu/ shows Hungarian selected)
+  const path = window.location.pathname;
+  const match = path.match(/^\/(hu|de|fr|es|nl|pt|pl)\//);
+  const current = match ? match[1] : "en";
+  langSelect.value = current;
+
+  langSelect.addEventListener("change", () => {
     const v = langSelect.value;
     document.cookie = `cc_lang=${v}; Path=/; Max-Age=31536000; SameSite=Lax`;
     window.location.href = v === "en" ? "/" : `/${v}/`;
   });
-
-  /* ---------- init ---------- */
-
-  updateStats();
-  text.addEventListener("input", updateStats);
 })();
