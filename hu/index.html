@@ -1,143 +1,160 @@
 <!DOCTYPE html>
-<html
-  lang="hu"
-  data-locale="hu-HU"
-  data-stats="Karakterek: {chars} · Szavak: {words} · Sorok: {lines}"
-  data-toast-copied="Másolva ✓"
-  data-toast-cleared="Törölve"
-  data-toast-done="Kész"
->
+<html lang="hu" data-locale="hu-HU">
 <head>
   <meta charset="utf-8" />
-  <meta content="width=device-width,initial-scale=1" name="viewport" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>Case Converter Online | Ingyenes szövegformázó eszköz</title>
-  <meta
-    name="description"
-    content="Ingyenes online case converter, amellyel a szöveget nagybetűssé, kisbetűssé, mondatkezdőssé vagy váltakozó kis- és nagybetűssé alakíthatod egy kattintással."
-  />
+  <title>Case Converter Online – Ingyenes szöveg kis- és nagybetűs átalakító</title>
+  <meta name="description" content="Ingyenes online case converter. Alakítsd át a szöveget nagybetűsre, kisbetűsre, mondatkezdőre vagy váltakozó formára egy kattintással.">
 
   <link rel="canonical" href="https://caseconvertonline.com/hu/" />
   <link rel="alternate" hreflang="en" href="https://caseconvertonline.com/" />
   <link rel="alternate" hreflang="hu" href="https://caseconvertonline.com/hu/" />
 
-  <!-- FONTOS: abszolút asset útvonal -->
   <link rel="stylesheet" href="/assets/styles.css" />
 </head>
 
 <body>
-  <header>
-    <div class="header-inner">
-      <a class="logo" href="/hu/">
-        caseconvert<span>online</span><span class="dot">.com</span>
-      </a>
 
-      <div class="lang">
-        <span>Nyelv</span>
-        <select id="langSelect">
-          <option value="en">English</option>
-          <option value="hu" selected>Magyar</option>
-          <option value="de">Deutsch</option>
-          <option value="fr">Français</option>
-          <option value="es">Español</option>
-          <option value="nl">Nederlands</option>
-          <option value="pt">Português</option>
-          <option value="pl">Polski</option>
-        </select>
-      </div>
+<header>
+  <div class="header-inner">
+    <a class="logo" href="/hu/">
+      caseconvert<span>online</span><span class="dot">.com</span>
+    </a>
 
-      <div class="mode">
-        <button
-          id="modeToggle"
-          class="mode-toggle"
-          type="button"
-          role="switch"
-          aria-checked="false"
-          aria-label="Sötét / világos mód"
-        >
-          <span class="mode-track">
-            <span class="mode-icon mode-sun">☀</span>
-            <span class="mode-icon mode-moon">🌙</span>
-            <span class="mode-thumb"></span>
-          </span>
-        </button>
-      </div>
-    </div>
-  </header>
-
-  <main class="container">
-    <div class="card tool">
-      <h1>Case Converter Online</h1>
-      <p class="lead">
-        Gyors és ingyenes szövegformázás — illeszd be a szöveget alább.
-      </p>
-
-      <div class="actions">
-        <button data-action="sentence">Mondatkezdő</button>
-        <button data-action="lower">kisbetűs</button>
-        <button class="active" data-action="upper">NAGYBETŰS</button>
-        <button data-action="capitalized">Szókezdő nagybetű</button>
-        <button data-action="alternating">vÁlTaKoZó</button>
-        <button class="ghost" data-action="copy">Másolás</button>
-        <button class="danger" data-action="clear">Törlés</button>
-      </div>
-
-      <textarea
-        id="text"
-        placeholder="Ide illeszd be a formázandó szöveget..."
-      ></textarea>
-
-      <div class="footer-bar">
-        <div id="stats"></div>
-        <div class="toast" id="toast"></div>
-      </div>
+    <div class="lang">
+      <span>Nyelv</span>
+      <select id="langSelect">
+        <option value="en">English</option>
+        <option value="hu" selected>Magyar</option>
+        <option value="de">Deutsch</option>
+        <option value="fr">Français</option>
+        <option value="es">Español</option>
+        <option value="nl">Nederlands</option>
+        <option value="pt">Português</option>
+        <option value="pl">Polski</option>
+      </select>
     </div>
 
-    <div class="features card">
-      <h2>Formázd a szöveget másodpercek alatt</h2>
-      <ul>
-        <li>Nagybetűs, kisbetűs és mondatkezdő formázás</li>
-        <li>Szókezdő nagybetűs és váltakozó betűméret</li>
-        <li>Egykattintásos másolás, regisztráció nélkül</li>
-      </ul>
+    <div class="mode">
+      <button id="modeToggle" class="mode-toggle" type="button" aria-label="Sötét/világos mód">
+        <span class="mode-track">
+          <span class="mode-icon mode-sun">☀</span>
+          <span class="mode-icon mode-moon">🌙</span>
+          <span class="mode-thumb"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="card tool">
+    <h1>Case Converter Online</h1>
+    <p class="lead">
+      Gyors és ingyenes online eszköz a szöveg kis- és nagybetűs formázásához.
+      Illeszd be a szöveget, válaszd ki a kívánt formátumot, és másold ki egy kattintással.
+    </p>
+
+    <div class="actions">
+      <button data-action="sentence">Mondatkezdő nagybetű</button>
+      <button data-action="lower">kisbetűs</button>
+      <button class="active" data-action="upper">NAGYBETŰS</button>
+      <button data-action="capitalized">Szókezdő nagybetű</button>
+      <button data-action="alternating">Váltakozó</button>
+      <button class="ghost" data-action="copy">Másolás</button>
+      <button class="danger" data-action="clear">Törlés</button>
     </div>
 
-    <section class="seo">
-      <h2>Mi az a Case Converter?</h2>
+    <textarea id="text" placeholder="Ide illeszd be a formázandó szöveget..."></textarea>
+
+    <div class="footer-bar">
+      <div id="stats"></div>
+      <div class="toast" id="toast"></div>
+    </div>
+  </section>
+
+  <section class="card features">
+    <h2>Formázd a szöveget másodpercek alatt</h2>
+    <ul>
+      <li>Nagybetűs, kisbetűs és mondatkezdő formázás</li>
+      <li>Szókezdő nagybetűs és váltakozó betűméret</li>
+      <li>Egykattintásos másolás, regisztráció nélkül</li>
+    </ul>
+  </section>
+
+  <section class="seo">
+    <h2>Mi az a Case Converter?</h2>
+    <p>
+      A <strong>caseconvertonline.com</strong> egy ingyenes online
+      <strong>szövegformázó eszköz</strong>, amely lehetővé teszi,
+      hogy a szöveget különböző kis- és nagybetűs formátumokra alakítsd.
+    </p>
+
+    <h3>Elérhető formátumok</h3>
+
+    <p><strong>NAGYBETŰS:</strong> minden betű nagybetűvé alakul, ideális címekhez.</p>
+    <p><strong>kisbetűs:</strong> minden karakter kisbetűs lesz.</p>
+    <p><strong>Mondatkezdő nagybetű:</strong> minden mondat első betűje nagybetűs.</p>
+    <p><strong>Szókezdő nagybetű:</strong> minden szó nagybetűvel kezdődik.</p>
+    <p><strong>Váltakozó:</strong> játékos, felváltva kis- és nagybetűs formátum.</p>
+
+    <h3>Hogyan használd?</h3>
+    <ol>
+      <li>Illeszd be a szöveget.</li>
+      <li>Válaszd ki a kívánt formázást.</li>
+      <li>Kattints a „Másolás” gombra.</li>
+    </ol>
+
+    <h3>Mire használható?</h3>
+    <ul>
+      <li>Blogcikkek és címek formázása</li>
+      <li>E-mailek és dokumentumok szerkesztése</li>
+      <li>Programkód vagy adatbevitel előkészítése</li>
+      <li>Elgépelések gyors javítása</li>
+    </ul>
+  </section>
+
+  <section class="faq card">
+    <h2>Gyakran ismételt kérdések</h2>
+
+    <details>
+      <summary>Mi az a case converter?</summary>
       <p>
-        A <strong>caseconvertonline.com</strong> egy ingyenes online
-        <strong>szövegformázó eszköz</strong>, amellyel pillanatok alatt
-        átalakíthatod a szöveg kis- és nagybetűzését.
+        A case converter egy olyan eszköz, amely a szöveg kis- és nagybetűs
+        formátumát alakítja át különböző módokon.
       </p>
+    </details>
 
-      <h3>Hogyan használd?</h3>
-      <ol>
-        <li>Illeszd be vagy írd be a szöveget.</li>
-        <li>Válaszd ki a kívánt formázást.</li>
-        <li>Kattints a „Másolás” gombra.</li>
-      </ol>
+    <details>
+      <summary>Ingyenes az eszköz használata?</summary>
+      <p>Igen, a caseconvertonline.com teljesen ingyenes.</p>
+    </details>
 
-      <h3>Mire használható?</h3>
-      <ul>
-        <li>Blogcikkek és címek formázása</li>
-        <li>E-mailek és dokumentumok szerkesztése</li>
-        <li>Programkód vagy adatbevitel előkészítése</li>
-        <li>Elgépelések gyors javítása</li>
-      </ul>
-    </section>
+    <details>
+      <summary>Elmentitek a beillesztett szöveget?</summary>
+      <p>Nem. A szöveg kizárólag a böngésződben marad.</p>
+    </details>
 
-    <footer class="site-footer">
-      <div class="footer-inner">
-        <p>© <span id="year"></span> caseconvertonline.com. Minden jog fenntartva.</p>
-      </div>
-    </footer>
-  </main>
+    <details>
+      <summary>Mobilon is használható?</summary>
+      <p>Igen, az oldal teljesen reszponzív.</p>
+    </details>
+  </section>
 
-  <script src="/assets/app.js" defer></script>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© <span id="year"></span> caseconvertonline.com – Minden jog fenntartva.</p>
+    </div>
+  </footer>
 
-  <script>
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-  </script>
+</main>
+
+<script src="/assets/app.js" defer></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>

@@ -1,78 +1,181 @@
-<!doctype html>
-<html lang="en" data-locale="en-US"
-  data-stats="Chars: {chars} · Words: {words} · Lines: {lines}"
-  data-toast-copied="Copied ✓" data-toast-cleared="Cleared"
-  data-toast-done="Done" data-toast-copy-fail="Copy failed">
+<!DOCTYPE html>
+<html lang="pl" data-locale="pl-PL">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Case Converter Online – Uppercase & Lowercase Text Converter</title>
-  <meta name="description" content="Free online case converter. Convert text to uppercase, lowercase, sentence case, capitalized or alternating case instantly.">
-  <link rel="canonical" href="https://caseconvertonline.com/">
-  <link rel="alternate" hreflang="en" href="https://caseconvertonline.com/">
-  <link rel="alternate" hreflang="hu" href="https://caseconvertonline.com/hu/">
-  <link rel="alternate" hreflang="de" href="https://caseconvertonline.com/de/">
-  <link rel="alternate" hreflang="fr" href="https://caseconvertonline.com/fr/">
-  <link rel="alternate" hreflang="es" href="https://caseconvertonline.com/es/">
-  <link rel="alternate" hreflang="nl" href="https://caseconvertonline.com/nl/">
-  <link rel="alternate" hreflang="pt" href="https://caseconvertonline.com/pt/">
-  <link rel="alternate" hreflang="pl" href="https://caseconvertonline.com/pl/">
-  <link rel="alternate" hreflang="x-default" href="https://caseconvertonline.com/">
-  <link rel="stylesheet" href="/assets/styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Case Converter Online – Darmowy konwerter tekstu</title>
+  <meta name="description" content="Darmowe narzędzie online do konwersji tekstu na WIELKIE LITERY, małe litery, format zdania, kapitalizowany lub naprzemienny jednym kliknięciem.">
+
+  <link rel="canonical" href="https://caseconvertonline.com/pl/" />
+  <link rel="alternate" hreflang="en" href="https://caseconvertonline.com/" />
+  <link rel="alternate" hreflang="hu" href="https://caseconvertonline.com/hu/" />
+  <link rel="alternate" hreflang="fr" href="https://caseconvertonline.com/fr/" />
+  <link rel="alternate" hreflang="es" href="https://caseconvertonline.com/es/" />
+  <link rel="alternate" hreflang="nl" href="https://caseconvertonline.com/nl/" />
+  <link rel="alternate" hreflang="pt" href="https://caseconvertonline.com/pt/" />
+  <link rel="alternate" hreflang="de" href="https://caseconvertonline.com/de/" />
+  <link rel="alternate" hreflang="pl" href="https://caseconvertonline.com/pl/" />
+
+  <link rel="stylesheet" href="/assets/styles.css" />
 </head>
+
 <body>
+
 <header>
   <div class="header-inner">
-    <div class="logo">caseconverter<span>online</span></div>
+    <a class="logo" href="/pl/">
+      caseconvert<span>online</span><span class="dot">.com</span>
+    </a>
+
     <div class="lang">
-      <span>Language</span>
+      <span>Język</span>
       <select id="langSelect">
-        <option value="en" selected>English</option>
+        <option value="en">English</option>
         <option value="hu">Magyar</option>
-        <option value="de">Deutsch</option>
         <option value="fr">Français</option>
         <option value="es">Español</option>
         <option value="nl">Nederlands</option>
         <option value="pt">Português</option>
-        <option value="pl">Polski</option>
+        <option value="de">Deutsch</option>
+        <option value="pl" selected>Polski</option>
       </select>
+    </div>
+
+    <div class="mode">
+      <button id="modeToggle" class="mode-toggle" type="button" aria-label="Tryb jasny / ciemny">
+        <span class="mode-track">
+          <span class="mode-icon mode-sun">☀</span>
+          <span class="mode-icon mode-moon">🌙</span>
+          <span class="mode-thumb"></span>
+        </span>
+      </button>
     </div>
   </div>
 </header>
 
-<main>
-  <div class="card">
-    <h1>Case Converter Online</h1>
-    <div class="subtitle">Fast & free text case conversion — paste your text below.</div>
+<main class="container">
 
-    <div class="buttons" id="buttons">
-      <button class="primary" data-action="sentence" data-case="1">Sentence Case</button>
-      <button data-action="lower" data-case="1">lower case</button>
-      <button data-action="upper" data-case="1">UPPER CASE</button>
-      <button data-action="capitalized" data-case="1">Capitalized</button>
-      <button data-action="alternating" data-case="1">aLtErNaTiNg</button>
-      <button data-action="copy">Copy</button>
-      <button class="danger" data-action="clear">Clear</button>
+  <section class="card tool">
+    <h1>Case Converter Online</h1>
+    <p class="lead">
+      Szybkie i darmowe narzędzie online do zmiany wielkich i małych liter w tekście.
+      Wklej tekst, wybierz format i skopiuj go jednym kliknięciem.
+    </p>
+
+    <div class="actions">
+      <button data-action="sentence">Format zdania</button>
+      <button data-action="lower">małe litery</button>
+      <button class="active" data-action="upper">WIELKIE LITERY</button>
+      <button data-action="capitalized">Kapitalizowany</button>
+      <button data-action="alternating">Naprzemienny</button>
+      <button class="ghost" data-action="copy">Kopiuj</button>
+      <button class="danger" data-action="clear">Wyczyść</button>
     </div>
 
-    <textarea id="text" placeholder="Paste text here to convert..."></textarea>
+    <textarea
+      id="text"
+      placeholder="Wklej tutaj tekst do konwersji..."
+    ></textarea>
 
     <div class="footer-bar">
       <div id="stats"></div>
       <div class="toast" id="toast"></div>
     </div>
-  </div>
+  </section>
 
-  <div class="features">
-    <h2>Transform your text in seconds</h2>
+  <section class="card features">
+    <h2>Zmień format tekstu w kilka sekund</h2>
     <ul>
-      <li>Convert text to uppercase, lowercase, and sentence case</li>
-      <li>Capitalized and alternating case support</li>
-      <li>One-click copy, no signup required</li>
+      <li>Konwersja na wielkie litery, małe litery i format zdania</li>
+      <li>Obsługa kapitalizacji i formatu naprzemiennego</li>
+      <li>Kopiowanie jednym kliknięciem, bez rejestracji</li>
     </ul>
-  </div>
+  </section>
+
+  <section class="seo">
+    <h2>Czym jest Case Converter?</h2>
+    <p>
+      <strong>caseconvertonline.com</strong> to
+      <strong>darmowy konwerter tekstu online</strong>,
+      który pozwala natychmiast zmienić sposób zapisu liter w tekście.
+    </p>
+
+    <p>
+      Możesz przekonwertować dowolny tekst na
+      <strong>WIELKIE LITERY</strong>,
+      <strong>małe litery</strong>,
+      <strong>format zdania</strong>,
+      <strong>kapitalizowany</strong>
+      lub <strong>naprzemienny</strong> jednym kliknięciem.
+    </p>
+
+    <h3>Dostępne formaty</h3>
+    <p><strong>WIELKIE LITERY:</strong> wszystkie litery są zamieniane na wielkie, idealne do nagłówków.</p>
+    <p><strong>małe litery:</strong> wszystkie litery są zamieniane na małe.</p>
+    <p><strong>Format zdania:</strong> pierwsza litera każdego zdania jest wielka.</p>
+    <p><strong>Kapitalizowany:</strong> każde słowo zaczyna się wielką literą.</p>
+    <p><strong>Naprzemienny:</strong> wielkie i małe litery występują naprzemiennie.</p>
+
+    <h3>Jak używać?</h3>
+    <ol>
+      <li>Wklej lub wpisz tekst w polu powyżej.</li>
+      <li>Wybierz żądany format.</li>
+      <li>Kliknij „Kopiuj”, aby skopiować wynik.</li>
+    </ol>
+
+    <h3>Zastosowania</h3>
+    <ul>
+      <li>Formatowanie tytułów i artykułów blogowych</li>
+      <li>Edycja e-maili i dokumentów</li>
+      <li>Przygotowanie tekstu do kodu lub danych</li>
+      <li>Szybka poprawa błędów w zapisie liter</li>
+    </ul>
+  </section>
+
+  <section class="faq card">
+    <h2>Najczęściej zadawane pytania</h2>
+
+    <details>
+      <summary>Czym jest case converter?</summary>
+      <p>
+        Case converter to narzędzie, które umożliwia zmianę wielkich i małych liter
+        w tekście na różne sposoby.
+      </p>
+    </details>
+
+    <details>
+      <summary>Czy to narzędzie jest darmowe?</summary>
+      <p>Tak, caseconvertonline.com jest całkowicie darmowe.</p>
+    </details>
+
+    <details>
+      <summary>Czy wklejony tekst jest zapisywany?</summary>
+      <p>
+        Nie. Tekst pozostaje wyłącznie w Twojej przeglądarce i nie jest zapisywany.
+      </p>
+    </details>
+
+    <details>
+      <summary>Czy działa na urządzeniach mobilnych?</summary>
+      <p>
+        Tak, strona jest w pełni responsywna i działa na telefonach oraz tabletach.
+      </p>
+    </details>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© <span id="year"></span> caseconvertonline.com – Wszelkie prawa zastrzeżone.</p>
+    </div>
+  </footer>
+
 </main>
 
 <script src="/assets/app.js" defer></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>

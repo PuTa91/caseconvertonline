@@ -1,78 +1,173 @@
-<!doctype html>
-<html lang="en" data-locale="en-US"
-  data-stats="Chars: {chars} · Words: {words} · Lines: {lines}"
-  data-toast-copied="Copied ✓" data-toast-cleared="Cleared"
-  data-toast-done="Done" data-toast-copy-fail="Copy failed">
+<!DOCTYPE html>
+<html lang="es" data-locale="es-ES">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Case Converter Online – Uppercase & Lowercase Text Converter</title>
-  <meta name="description" content="Free online case converter. Convert text to uppercase, lowercase, sentence case, capitalized or alternating case instantly.">
-  <link rel="canonical" href="https://caseconvertonline.com/">
-  <link rel="alternate" hreflang="en" href="https://caseconvertonline.com/">
-  <link rel="alternate" hreflang="hu" href="https://caseconvertonline.com/hu/">
-  <link rel="alternate" hreflang="de" href="https://caseconvertonline.com/de/">
-  <link rel="alternate" hreflang="fr" href="https://caseconvertonline.com/fr/">
-  <link rel="alternate" hreflang="es" href="https://caseconvertonline.com/es/">
-  <link rel="alternate" hreflang="nl" href="https://caseconvertonline.com/nl/">
-  <link rel="alternate" hreflang="pt" href="https://caseconvertonline.com/pt/">
-  <link rel="alternate" hreflang="pl" href="https://caseconvertonline.com/pl/">
-  <link rel="alternate" hreflang="x-default" href="https://caseconvertonline.com/">
-  <link rel="stylesheet" href="/assets/styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Case Converter Online – Convertidor de texto gratuito</title>
+  <meta name="description" content="Herramienta online gratuita para convertir texto a MAYÚSCULAS, minúsculas, formato de oración, capitalizado o alternado en un solo clic.">
+
+  <link rel="canonical" href="https://caseconvertonline.com/es/" />
+  <link rel="alternate" hreflang="en" href="https://caseconvertonline.com/" />
+  <link rel="alternate" hreflang="hu" href="https://caseconvertonline.com/hu/" />
+  <link rel="alternate" hreflang="fr" href="https://caseconvertonline.com/fr/" />
+  <link rel="alternate" hreflang="es" href="https://caseconvertonline.com/es/" />
+
+  <link rel="stylesheet" href="/assets/styles.css" />
 </head>
+
 <body>
+
 <header>
   <div class="header-inner">
-    <div class="logo">caseconverter<span>online</span></div>
+    <a class="logo" href="/es/">
+      caseconvert<span>online</span><span class="dot">.com</span>
+    </a>
+
     <div class="lang">
-      <span>Language</span>
+      <span>Idioma</span>
       <select id="langSelect">
-        <option value="en" selected>English</option>
+        <option value="en">English</option>
         <option value="hu">Magyar</option>
         <option value="de">Deutsch</option>
         <option value="fr">Français</option>
-        <option value="es">Español</option>
+        <option value="es" selected>Español</option>
         <option value="nl">Nederlands</option>
         <option value="pt">Português</option>
         <option value="pl">Polski</option>
       </select>
     </div>
+
+    <div class="mode">
+      <button id="modeToggle" class="mode-toggle" type="button" aria-label="Modo oscuro / claro">
+        <span class="mode-track">
+          <span class="mode-icon mode-sun">☀</span>
+          <span class="mode-icon mode-moon">🌙</span>
+          <span class="mode-thumb"></span>
+        </span>
+      </button>
+    </div>
   </div>
 </header>
 
-<main>
-  <div class="card">
-    <h1>Case Converter Online</h1>
-    <div class="subtitle">Fast & free text case conversion — paste your text below.</div>
+<main class="container">
 
-    <div class="buttons" id="buttons">
-      <button class="primary" data-action="sentence" data-case="1">Sentence Case</button>
-      <button data-action="lower" data-case="1">lower case</button>
-      <button data-action="upper" data-case="1">UPPER CASE</button>
-      <button data-action="capitalized" data-case="1">Capitalized</button>
-      <button data-action="alternating" data-case="1">aLtErNaTiNg</button>
-      <button data-action="copy">Copy</button>
-      <button class="danger" data-action="clear">Clear</button>
+  <section class="card tool">
+    <h1>Case Converter Online</h1>
+    <p class="lead">
+      Herramienta online rápida y gratuita para cambiar el formato de mayúsculas y minúsculas del texto.
+      Pega tu texto, elige el formato y cópialo con un solo clic.
+    </p>
+
+    <div class="actions">
+      <button data-action="sentence">Formato de oración</button>
+      <button data-action="lower">minúsculas</button>
+      <button class="active" data-action="upper">MAYÚSCULAS</button>
+      <button data-action="capitalized">Capitalizado</button>
+      <button data-action="alternating">Alternado</button>
+      <button class="ghost" data-action="copy">Copiar</button>
+      <button class="danger" data-action="clear">Borrar</button>
     </div>
 
-    <textarea id="text" placeholder="Paste text here to convert..."></textarea>
+    <textarea
+      id="text"
+      placeholder="Pega aquí el texto que deseas convertir..."
+    ></textarea>
 
     <div class="footer-bar">
       <div id="stats"></div>
       <div class="toast" id="toast"></div>
     </div>
-  </div>
+  </section>
 
-  <div class="features">
-    <h2>Transform your text in seconds</h2>
+  <section class="card features">
+    <h2>Convierte tu texto en segundos</h2>
     <ul>
-      <li>Convert text to uppercase, lowercase, and sentence case</li>
-      <li>Capitalized and alternating case support</li>
-      <li>One-click copy, no signup required</li>
+      <li>Conversión a mayúsculas, minúsculas y formato de oración</li>
+      <li>Compatibilidad con capitalización y formato alternado</li>
+      <li>Copia con un solo clic, sin registro</li>
     </ul>
-  </div>
+  </section>
+
+  <section class="seo">
+    <h2>¿Qué es un Case Converter?</h2>
+    <p>
+      <strong>caseconvertonline.com</strong> es una
+      <strong>herramienta online gratuita para convertir mayúsculas y minúsculas</strong>
+      que te permite modificar instantáneamente el formato del texto.
+    </p>
+
+    <p>
+      Puedes convertir cualquier texto a
+      <strong>MAYÚSCULAS</strong>,
+      <strong>minúsculas</strong>,
+      <strong>formato de oración</strong>,
+      <strong>capitalizado</strong>
+      o <strong>alternado</strong> con un solo clic.
+    </p>
+
+    <h3>Formatos disponibles</h3>
+    <p><strong>MAYÚSCULAS:</strong> convierte todas las letras a mayúsculas, ideal para títulos.</p>
+    <p><strong>minúsculas:</strong> convierte todas las letras a minúsculas.</p>
+    <p><strong>Formato de oración:</strong> pone en mayúscula la primera letra de cada oración.</p>
+    <p><strong>Capitalizado:</strong> cada palabra comienza con mayúscula.</p>
+    <p><strong>Alternado:</strong> alterna mayúsculas y minúsculas para un estilo creativo.</p>
+
+    <h3>¿Cómo usarlo?</h3>
+    <ol>
+      <li>Pega o escribe el texto en el campo.</li>
+      <li>Selecciona el formato deseado.</li>
+      <li>Haz clic en “Copiar” para obtener el texto convertido.</li>
+    </ol>
+
+    <h3>Casos de uso</h3>
+    <ul>
+      <li>Formatear títulos y artículos de blog</li>
+      <li>Editar correos electrónicos y documentos</li>
+      <li>Preparar texto para código o datos</li>
+      <li>Corregir errores de capitalización al instante</li>
+    </ul>
+  </section>
+
+  <section class="faq card">
+    <h2>Preguntas frecuentes</h2>
+
+    <details>
+      <summary>¿Qué es un case converter?</summary>
+      <p>
+        Es una herramienta que permite cambiar el formato de mayúsculas y minúsculas del texto
+        de diferentes maneras.
+      </p>
+    </details>
+
+    <details>
+      <summary>¿La herramienta es gratuita?</summary>
+      <p>Sí, caseconvertonline.com es completamente gratuita.</p>
+    </details>
+
+    <details>
+      <summary>¿Se guarda el texto que pego?</summary>
+      <p>No. El texto permanece únicamente en tu navegador.</p>
+    </details>
+
+    <details>
+      <summary>¿Funciona en dispositivos móviles?</summary>
+      <p>Sí, el sitio es totalmente responsive y funciona en móviles y tablets.</p>
+    </details>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© <span id="year"></span> caseconvertonline.com – Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
 </main>
 
 <script src="/assets/app.js" defer></script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
