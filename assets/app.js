@@ -1,170 +1,121 @@
-(() => {
-  const input = document.getElementById("input");
+(function () {
+  const text = document.getElementById("text");
   const stats = document.getElementById("stats");
-  const copyBtn = document.getElementById("copyBtn");
-  const clearBtn = document.getElementById("clearBtn");
-  const buttons = Array.from(document.querySelectorAll(".btn[data-action]"));
+  const toast = document.getElementById("toast");
+  const buttons = document.querySelectorAll(".actions button");
+  const langSelect = document.getElementById("langSelect");
+  const modeToggle = document.getElementById("modeToggle");
 
-  const THEME_KEY = "cco_theme";
+  if (!text) return;
 
-  function countStats(text) {
-    const chars = text.length;
-    const words = text.trim() ? text.trim().split(/\s+/).length : 0;
-    const lines = text ? text.split(/\r?\n/).length : 0;
-    return { chars, words, lines };
+  /* ---------- helpers ---------- */
+
+  function countWords(str) {
+    return str.trim() ? str.trim().split(/\s+/).length : 0;
+  }
+
+  function countLines(str) {
+    return str ? str.split(/\r?\n/).length : 0;
   }
 
   function updateStats() {
-    if (!stats || !input) return;
-    const { chars, words, lines } = countStats(input.value);
-    stats.textContent = `Chars: ${chars} · Words: ${words} · Lines: ${lines}`;
+    if (!stats) return;
+    const t = text.value || "";
+    stats.textContent = `Chars: ${t.length} · Words: ${countWords(t)} · Lines: ${countLines(t)}`;
   }
 
-  function toSentenceCase(text) {
-    // Split by sentence endings and recompose
-    return text.replace(/(^\s*[a-z])|([.!?]\s+)([a-z])/g, (m, p1, p2, p3) => {
-      if (p1) return p1.toUpperCase();
-      return p2 + p3.toUpperCase();
-    });
+  function showToast(msg) {
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.style.display = "inline-flex";
+    setTimeout(() => (toast.style.display = "none"), 1200);
   }
 
-  function toCapitalized(text) {
-    return text.replace(/\b([a-z])/gi, (m) => m.toUpperCase());
-  }
+  /* ---------- case actions ---------- */
 
-  function toAlternating(text) {
-    let out = "";
-    let upper = false;
-    for (const ch of text) {
-      if (/[a-z]/i.test(ch)) {
-        out += upper ? ch.toUpperCase() : ch.toLowerCase();
-        upper = !upper;
-      } else {
-        out += ch;
+  const actions = {
+    upper: (s) => s.toUpperCase(),
+    lower: (s) => s.toLowerCase(),
+    sentence: (s) =>
+      s
+        .toLowerCase()
+        .replace(/(^\s*[a-z])|([.!?]\s*[a-z])/g, (m) => m.toUpperCase()),
+    capitalized: (s) =>
+      s.toLowerCase().replace(/\b([a-z])/g, (m) => m.toUpperCase()),
+    alternating: (s) => {
+      let out = "";
+      let flip = false;
+      for (const ch of s) {
+        if (/[a-z]/i.test(ch)) {
+          out += flip ? ch.toUpperCase() : ch.toLowerCase();
+          flip = !flip;
+        } else {
+          out += ch;
+        }
       }
-    }
-    return out;
-  }
+      return out;
+    },
+  };
 
-  function applyAction(action) {
-    if (!input) return;
-    const t = input.value;
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      const a = btn.dataset.action;
 
-    let next = t;
-    switch (action) {
-      case "upper":
-        next = t.toUpperCase();
-        break;
-      case "lower":
-        next = t.toLowerCase();
-        break;
-      case "sentence":
-        next = toSentenceCase(t);
-        break;
-      case "capitalized":
-        next = toCapitalized(t);
-        break;
-      case "alternating":
-        next = toAlternating(t);
-        break;
-      default:
-        break;
-    }
+      if (a === "copy") {
+        await navigator.clipboard.writeText(text.value || "");
+        showToast("Copied ✓");
+        return;
+      }
 
-    input.value = next;
-    updateStats();
-  }
+      if (a === "clear") {
+        text.value = "";
+        updateStats();
+        showToast("Cleared");
+        return;
+      }
 
-  function setActive(action) {
-    buttons.forEach((b) => b.classList.toggle("is-active", b.dataset.action === action));
-  }
+      if (!actions[a]) return;
 
-  // Theme (default LIGHT)
-  function getPreferredTheme() {
-    const saved = localStorage.getItem(THEME_KEY);
-    if (saved === "dark" || saved === "light") return saved;
-    return "light";
-  }
+      buttons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
 
-  function applyTheme(theme) {
-    if (theme === "dark") {
+      text.value = actions[a](text.value || "");
+      updateStats();
+      showToast("Done");
+    });
+  });
+
+  /* ---------- theme (default LIGHT) ---------- */
+
+  const THEME_KEY = "cco_theme";
+
+  function applyTheme(t) {
+    if (t === "dark") {
       document.documentElement.setAttribute("data-theme", "dark");
     } else {
       document.documentElement.removeAttribute("data-theme");
     }
-    localStorage.setItem(THEME_KEY, theme);
-
-    const toggle = document.getElementById("modeToggle");
-    if (toggle) toggle.setAttribute("aria-checked", theme === "dark" ? "true" : "false");
+    localStorage.setItem(THEME_KEY, t);
+    modeToggle?.setAttribute("aria-checked", t === "dark");
   }
 
-  const modeToggle = document.getElementById("modeToggle");
-  if (modeToggle) {
-    modeToggle.addEventListener("click", () => {
-      const current = document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
-      applyTheme(current === "dark" ? "light" : "dark");
-    });
-  }
-  applyTheme(getPreferredTheme());
+  applyTheme(localStorage.getItem(THEME_KEY) || "light");
 
-  // Button handlers
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const action = btn.dataset.action;
-      setActive(action);
-      applyAction(action);
-    });
+  modeToggle?.addEventListener("click", () => {
+    const isDark = document.documentElement.hasAttribute("data-theme");
+    applyTheme(isDark ? "light" : "dark");
   });
 
-  // Copy / Clear
-  if (copyBtn) {
-    copyBtn.addEventListener("click", async () => {
-      if (!input) return;
-      try {
-        await navigator.clipboard.writeText(input.value);
-      } catch (_) {}
-    });
-  }
+  /* ---------- language switch ---------- */
 
-  if (clearBtn) {
-    clearBtn.addEventListener("click", () => {
-      if (!input) return;
-      input.value = "";
-      updateStats();
-    });
-  }
+  langSelect?.addEventListener("change", () => {
+    const v = langSelect.value;
+    document.cookie = `cc_lang=${v}; Path=/; Max-Age=31536000; SameSite=Lax`;
+    window.location.href = v === "en" ? "/" : `/${v}/`;
+  });
 
-  if (input) {
-    input.addEventListener("input", updateStats);
-    updateStats();
-  }
+  /* ---------- init ---------- */
 
-  // Footer year
-  const year = document.getElementById("year");
-  if (year) year.textContent = String(new Date().getFullYear());
-
-  // Back to top button (guarded)
-  const toTop = document.getElementById("toTop");
-  if (toTop) {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 400) toTop.classList.add("show");
-      else toTop.classList.remove("show");
-    });
-    toTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-
-  // Locale switching (cookie only; no navigation until /hu etc exist)
-  const langSelect = document.getElementById("langSelect");
-  if (langSelect) {
-    langSelect.addEventListener("change", () => {
-      const v = langSelect.value;
-      document.cookie = `cc_lang=${v}; Path=/; Max-Age=31536000; SameSite=Lax`;
-      if (v !== "en") {
-        langSelect.value = "en";
-        alert("Language pages coming soon.");
-      }
-    });
-  }
+  updateStats();
+  text.addEventListener("input", updateStats);
 })();
