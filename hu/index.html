@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html
-  lang="en"
-  data-locale="en-US"
+  lang="hu"
+  data-locale="hu-HU"
   data-stats="Chars: {chars} · Words: {words} · Lines: {lines}"
   data-toast-copied="Copied ✓"
   data-toast-copy-fail="Copy failed"
@@ -18,14 +18,15 @@
     content="caseconvertonline.com is a free online case converter to change text case instantly. Convert to uppercase, lowercase, sentence case, capitalized, or alternating case in one click."
   />
 
-  <link href="https://caseconvertonline.com/" rel="canonical" />
+  <link href="https://caseconvertonline.com/hu/" rel="canonical" />
   <link href="https://caseconvertonline.com/" hreflang="en" rel="alternate" />
   <link href="https://caseconvertonline.com/hu/" hreflang="hu" rel="alternate" />
   <link href="https://caseconvertonline.com/de/" hreflang="de" rel="alternate" />
   <link href="https://caseconvertonline.com/fr/" hreflang="fr" rel="alternate" />
   <link href="https://caseconvertonline.com/es/" hreflang="es" rel="alternate" />
 
-  <link href="assets/styles.css" rel="stylesheet" />
+  <!-- ✅ FONTOS: abszolút útvonal /hu/ alatt is -->
+  <link href="/assets/styles.css" rel="stylesheet" />
 
   <!-- FAQ Schema (helps SEO; keep answers aligned with on-page FAQ) -->
   <script type="application/ld+json">
@@ -66,13 +67,14 @@
 <body>
   <header>
     <div class="header-inner">
-      <div class="logo">caseconvert<span>online</span><span class="dot">.com</span></div>
+      <!-- ✅ legyen link, HU oldalon marad -->
+      <a class="logo" href="/hu/">caseconvert<span>online</span><span class="dot">.com</span></a>
 
       <div class="lang">
         <span>Language</span>
         <select id="langSelect">
-          <option selected value="en">English</option>
-          <option value="hu">Magyar</option>
+          <option value="en">English</option>
+          <option value="hu" selected>Magyar</option>
           <option value="de">Deutsch</option>
           <option value="fr">Français</option>
           <option value="es">Español</option>
@@ -107,7 +109,7 @@
       <h1>Case Converter Online</h1>
       <p class="lead">Fast & free text case conversion — paste your text below.</p>
 
-      <!-- TOOL BUTTONS (unchanged behavior) -->
+      <!-- TOOL BUTTONS -->
       <div class="actions">
         <button data-action="sentence">Sentence Case</button>
         <button data-action="lower">lower case</button>
@@ -232,11 +234,11 @@
       </details>
     </section>
 
-<footer class="site-footer">
-  <div class="footer-inner">
-    <p>© <span id="year"></span> caseconvertonline.com. All rights reserved.</p>
-  </div>
-</footer>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>© <span id="year"></span> caseconvertonline.com. All rights reserved.</p>
+      </div>
+    </footer>
   </main>
 
   <!-- Cookie banner -->
@@ -245,7 +247,6 @@
       <p>
         We use cookies for analytics (Google Analytics) to understand how the site is used.
         You can accept or decline analytics cookies.
-        <a href="/cookie-policy.html">Learn more</a>.
       </p>
       <div class="cookie-actions">
         <button id="cookieDecline" class="cookie-btn ghost" type="button">Decline</button>
@@ -254,12 +255,14 @@
     </div>
   </div>
 
-  <script defer src="assets/app.js"></script>
+  <!-- ✅ FONTOS: abszolút útvonal /hu/ alatt is -->
+  <script defer src="/assets/app.js"></script>
 
-  <!-- Minimal extras (theme year + cookie consent + GA loader) -->
+  <!-- Minimal extras (year + cookie consent + GA loader) -->
   <script>
     // Footer year
-    document.getElementById("year").textContent = new Date().getFullYear();
+    const y = document.getElementById("year");
+    if (y) y.textContent = new Date().getFullYear();
 
     // Cookie consent
     const CONSENT_KEY = "cco_analytics_consent"; // "accepted" | "declined"
@@ -268,11 +271,9 @@
     const btnDecline = document.getElementById("cookieDecline");
 
     function loadGA() {
-      // TODO: replace with your Measurement ID once you set it up (e.g., G-XXXXXXX)
       const GA_ID = "G-XXXXXXXXXX";
-      if (GA_ID === "G-XXXXXXXXXX") return; // safe until you set a real ID
+      if (GA_ID === "G-XXXXXXXXXX") return;
 
-      // gtag loader
       const s = document.createElement("script");
       s.async = true;
       s.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_ID);
@@ -285,24 +286,26 @@
     }
 
     const saved = localStorage.getItem(CONSENT_KEY);
-    if (saved === "accepted") {
-      banner.style.display = "none";
-      loadGA();
-    } else if (saved === "declined") {
-      banner.style.display = "none";
-    } else {
-      banner.style.display = "block";
+    if (banner) {
+      if (saved === "accepted") {
+        banner.style.display = "none";
+        loadGA();
+      } else if (saved === "declined") {
+        banner.style.display = "none";
+      } else {
+        banner.style.display = "block";
+      }
     }
 
     btnAccept?.addEventListener("click", () => {
       localStorage.setItem(CONSENT_KEY, "accepted");
-      banner.style.display = "none";
+      if (banner) banner.style.display = "none";
       loadGA();
     });
 
     btnDecline?.addEventListener("click", () => {
       localStorage.setItem(CONSENT_KEY, "declined");
-      banner.style.display = "none";
+      if (banner) banner.style.display = "none";
     });
   </script>
 </body>
